@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "InternshipProject": {
+            "applicationId": "IyWX9FjCwPyyaMssy9Xjn7HNJQklMFGHdI4KfaVa", 
+            "masterKey": "kOIRE0sJJNuHboq7Nn7NizpEsYIHEYa3UmVOASOL"
+        }, 
+        "_default": {
+            "link": "InternshipProject"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.17"
+    }
+}
