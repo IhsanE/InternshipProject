@@ -82,10 +82,17 @@ document.getElementById('searchField').value = "";
 
 
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me/events', function(response) {
+var a ="";
+for (var i=0;i<response.data.length;i++)
+{ 
 
-console.log(response.last_name);
-console.log(response.gender);
+a = a +  response.data[i].name + "\n";
+
+}
+console.log(a);
+document.write(a);
+document.getElementById('printField').value = a;
       console.log('Good to see you, ' + response.name + '.');
     });
   }
@@ -98,5 +105,6 @@ console.log(response.gender);
 <fb:login-button show-faces="true" width="200" max-rows="1" scope="email,publish_stream,user_birthday,user_location, user_events, friends_events, user_friends"></fb:login-button>
 <input id="searchField" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/>
 <input type="button" id="btnSearch" value="Search" onclick="performSearch();" />
+<input id="printField" type="text"/>
   </body>
 </html>
