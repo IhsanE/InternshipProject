@@ -78,26 +78,33 @@ document.getElementById('searchField').value = "";
 
   // Here we run a very simple test of the Graph API after login is successful. 
   // This testAPI() function is only called in those cases. 
-  function testAPI() {
 
+// **************************** THE MAIN METHOD ****************************
+function testAPI() {
 
     console.log('Welcome!  Fetching your information.... ');
+
+    // |||||||||||||||||||||||| QUERY EVENT DATA ||||||||||||||||||||||||
+
     FB.api('/me/events', function(response) {
-var a ="";
-for (var i=0;i<response.data.length;i++)
-{ 
+		var numberList = document.getElementById("numberList");
+		for (var i=0;i<response.data.length;i++){ 
+                    //create new li element
+            var newNumberListItem = document.createElement("li");
 
-a = a +  response.data[i].name + "\n";
+                    //create new text node
+            var numberListValue = document.createTextNode(response.data[i].name);
 
-}
-console.log(a);
-document.write(a);
-document.getElementById('printField').value = a;
-      console.log('Good to see you, ' + response.name + '.');
+                    //add text node to li element
+            newNumberListItem.appendChild(numberListValue);
+
+                    //add new list element built in previous steps to unordered list
+                    //called numberList
+            numberList.appendChild(newNumberListItem);   
+    	}
     });
-  }
+}
 </script>
-
 <!--
   Below we include the Login Button social plugin. This button uses the JavaScript SDK to
   present a graphical Login button that triggers the FB.login() function when clicked. -->
@@ -105,6 +112,6 @@ document.getElementById('printField').value = a;
 <fb:login-button show-faces="true" width="200" max-rows="1" scope="email,publish_stream,user_birthday,user_location, user_events, friends_events, user_friends"></fb:login-button>
 <input id="searchField" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/>
 <input type="button" id="btnSearch" value="Search" onclick="performSearch();" />
-<input id="printField" type="text"/>
+<ul id="numberList"></ul>
   </body>
 </html>
