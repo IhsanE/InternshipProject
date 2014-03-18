@@ -26,7 +26,9 @@ IP
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
-      testAPI();
+
+      /**testAPI();**/
+
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -58,15 +60,22 @@ IP
     }
   });
   };
-//***
+// Search Query
+var searchTerm;
 function performSearch() {
-    var searchTerm = encodeURIComponent(document.getElementById('searchField').value);
-document.getElementById('searchField').value = "";
-    window.open('http://www.google.com/search?q=' + searchTerm, 'new_window_1');
-    window.open('http://search.yahoo.com/search?p=' + searchTerm, 'new_window_2');
-    // open more tabs here ...
+	document.getElementById('numberList').innerHTML = '';
+	
+
+	// Set <searchTerm> to query value
+    searchTerm = document.getElementById('searchField').value
+    // clear query value
+	document.getElementById('searchField').value = "";
+
+	testAPI();
 }
-//***
+// Search Query
+
+
   // Load the SDK asynchronously
   (function(d){
    var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -84,29 +93,37 @@ function testAPI() {
 
     console.log('Welcome!  Fetching your information.... ');
 
-    // |||||||||||||||||||||||| QUERY EVENT DATA ||||||||||||||||||||||||
+    // Query events NOT_REPLIED to
 
     FB.api('/me/events/not_replied', function(response) {
 		var numberList = document.getElementById("numberList");
 		for (var i=0;i<response.data.length;i++){ 
-                    //create new li element
-            var newNumberListItem = document.createElement("li");
+            
+        	if (response.data[i].name.toLowerCase().search(searchTerm.toLowerCase()) != -1){
+
+        		var newNumberListItem = document.createElement("li");
 
                     //create new text node
-            var numberListValue = document.createTextNode(response.data[i].name + "   " + response.data[i].picture);
+            	var numberListValue = document.createTextNode(response.data[i].name + "   " + response.data[i].picture);
 
                     //add text node to li element
-            newNumberListItem.appendChild(numberListValue);
+            	newNumberListItem.appendChild(numberListValue);
 
                     //add new list element built in previous steps to unordered list
                     //called numberList
-            numberList.appendChild(newNumberListItem);   
-    	}
+            	numberList.appendChild(newNumberListItem);
+        	}
+}
+           
     });
+    
+    // Query events DECLINED/MAYBE/ATTENDING
 
     FB.api('/me/events/', function(response) {
 		var numberList = document.getElementById("numberList");
 		for (var i=0;i<response.data.length;i++){ 
+
+			if (response.data[i].name.toLowerCase().search(searchTerm.toLowerCase()) != -1){
                     //create new li element
             var newNumberListItem = document.createElement("li");
 
@@ -119,6 +136,32 @@ function testAPI() {
                     //add new list element built in previous steps to unordered list
                     //called numberList
             numberList.appendChild(newNumberListItem);   
+
+        }
+    	}
+    });
+
+    // Query USERS FRIENDS
+
+    FB.api('/me/friends', function(response) {
+		var numberList = document.getElementById("numberList");
+		for (var i=0;i<response.data.length;i++){ 
+
+			if (response.data[i].name.toLowerCase().search(searchTerm.toLowerCase()) != -1){
+                    //create new li element
+            var newNumberListItem = document.createElement("li");
+
+                    //create new text node
+            var numberListValue = document.createTextNode(response.data[i].name);
+
+                    //add text node to li element
+            newNumberListItem.appendChild(numberListValue);
+
+                    //add new list element built in previous steps to unordered list
+                    //called numberList
+            numberList.appendChild(newNumberListItem);   
+
+        }
     	}
     });
 }
