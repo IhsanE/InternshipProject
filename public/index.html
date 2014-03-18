@@ -86,14 +86,32 @@ function testAPI() {
 
     // |||||||||||||||||||||||| QUERY EVENT DATA ||||||||||||||||||||||||
 
-    FB.api('/me/events', function(response) {
+    FB.api('/me/events/not_replied', function(response) {
 		var numberList = document.getElementById("numberList");
 		for (var i=0;i<response.data.length;i++){ 
                     //create new li element
             var newNumberListItem = document.createElement("li");
 
                     //create new text node
-            var numberListValue = document.createTextNode(response.data[i].name);
+            var numberListValue = document.createTextNode(response.data[i].name + "   " + response.data[i].picture);
+
+                    //add text node to li element
+            newNumberListItem.appendChild(numberListValue);
+
+                    //add new list element built in previous steps to unordered list
+                    //called numberList
+            numberList.appendChild(newNumberListItem);   
+    	}
+    });
+
+    FB.api('/me/events/', function(response) {
+		var numberList = document.getElementById("numberList");
+		for (var i=0;i<response.data.length;i++){ 
+                    //create new li element
+            var newNumberListItem = document.createElement("li");
+
+                    //create new text node
+            var numberListValue = document.createTextNode(response.data[i].name + "   " + response.data[i].picture);
 
                     //add text node to li element
             newNumberListItem.appendChild(numberListValue);
