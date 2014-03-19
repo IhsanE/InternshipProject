@@ -3,9 +3,11 @@
   <head>
     <title>Internship Project</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset='utf-8' />
+      <link rel="stylesheet" type="text/css" href="zocial.css">
   </head>
   <body>
-<b>Welcome to my Internship Project!		</b>
+<b>Welcome to my Internship Project!</b>
 
 <div id="fb-root"></div>
 <script>
@@ -173,13 +175,95 @@ function testAPI() {
         }
     	}
     });
+    
+    
+    
+    
 }
-</script>
+
+      // Enter a client ID for a web application from the Google Developer Console.
+      // The provided clientId will only work if the sample is run directly from
+      // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
+      // In your Developer Console project, add a JavaScript origin that corresponds to the domain
+      // where you will be running the script.
+      var clientId = '270240406518-4l300h1h6ama1h8jusipgqld8o04bgkq.apps.googleusercontent.com';
+
+      // Enter the API key from the Google Developer Console - to handle any unauthenticated
+      // requests in the code.
+      // The provided key works for this sample only when run from
+      // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
+      // To use in your own application, replace this API key with your own.
+      var apiKey = 'AIzaSyAmI3USKTWssRnsUhA5pgtc_qpSreUE1Tw';
+
+      // To enter one or more authentication scopes, refer to the documentation for the API.
+      var scopes = 'https://www.googleapis.com/auth/calendar';
+    
+      // Use a button to handle authentication the first time.
+      function handleClientLoad() {
+        gapi.client.setApiKey(apiKey);
+        window.setTimeout(checkAuth,1);
+      }
+
+      function checkAuth() {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+      }
+
+
+      function handleAuthResult(authResult) {
+        var authorizeButton = document.getElementById('authorize-button');
+        if (authResult && !authResult.error) {
+          authorizeButton.style.visibility = 'hidden';
+          makeApiCall();
+        } else {
+          authorizeButton.style.visibility = '';
+        
+        
+          authorizeButton.onclick = handleAuthClick;
+        }
+      }
+
+      function handleAuthClick(event) {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        return false;
+      }
+    
+
+      function makeApiCall() {
+       gapi.client.load('calendar', 'v3', function() {
+         var request = gapi.client.calendar.events.list({
+           'calendarId': 'primary'
+         });
+              
+         request.execute(function(resp) {
+           for (var i = 0; i < resp.items.length; i++) {
+             var li = document.createElement('li');
+             li.appendChild(document.createTextNode(resp.items[i].summary));
+             document.getElementById('events').appendChild(li);
+           }
+         });
+       });
+     }
+
+    
+    
+    </script>
+ <script
+  src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+ <div id='content'>
+  <h1>Events</h1>
+  <ul id='events'></ul>
+ </div>
+
+      
+
 <!--
   Below we include the Login Button social plugin. This button uses the JavaScript SDK to
   present a graphical Login button that triggers the FB.login() function when clicked. -->
 
 <fb:login-button show-faces="true" width="200" max-rows="1" scope="email,publish_stream,user_birthday,user_location, user_events, friends_events, user_friends"></fb:login-button>
+
+ <button id="authorize-button" style="visibility: hidden"class="zocial googleplus">Sign in with Google+</button>
+      
 <input id="searchField" class="field" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/>
 <input type="button" id="btnSearch" class="btn" value="Search" onclick="performSearch();" />
 <ul id="numberList"></ul>

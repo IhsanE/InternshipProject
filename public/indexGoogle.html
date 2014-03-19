@@ -21,7 +21,7 @@
 
 <html>
 <head>
-  <title>Google+ JavaScript Quickstart</title>
+  <title>Google+ JavaaScript Quickstart</title>
   <script type="text/javascript">
   (function() {
     var po = document.createElement('script');
@@ -36,6 +36,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
 </head>
 <body>
+    
   <div id="gConnect">
     <button class="g-signin"
         data-scope="https://www.googleapis.com/auth/plus.login"
@@ -57,9 +58,13 @@
 
     <h2>User's friends that are visible to this app</h2>
     <div id="visiblePeople"></div>
+      
+    <h2>CALENDAR EVENT STUFF</h2>
+    <div id="getAllEvents"></div>
 
     <h2>Authentication Logs</h2>
     <pre id="authResult"></pre>
+      
   </div>
   <div id="loaderror">
     This section will be hidden by JQuery. If you can see this message, you
@@ -68,6 +73,11 @@
     <a href="https://developers.google.com/+/quickstart/javascript">
     https://developers.google.com/+/quickstart/javascript</a>.
   </div>
+    
+<?php
+ $event = $service->events->get('primary', "8sd1chi4dqe2kehbr5dojcpap4_20140318T180000Z");
+ echo $event->getSummary()
+ ?>
 </body>
 <script type="text/javascript">
 var helper = (function() {
@@ -92,6 +102,7 @@ var helper = (function() {
           $('#gConnect').hide();
           helper.profile();
           helper.people();
+          helper.getAllEvents();
         } else if (authResult['error']) {
           // There was an error, which means the user is not signed in.
           // As an example, you can handle by writing to the console:
@@ -121,6 +132,7 @@ var helper = (function() {
           $('#authOps').hide();
           $('#profile').empty();
           $('#visiblePeople').empty();
+          $('#getAllEvents').empty();
           $('#authResult').empty();
           $('#gConnect').show();
         },
@@ -134,6 +146,22 @@ var helper = (function() {
      * Gets and renders the list of people visible to this app.
      */
     people: function() {
+      var request = gapi.client.plus.people.list({
+        'calendarId': 'primary',
+        'eventId': '8sd1chi4dqe2kehbr5dojcpap4_20140318T180000Z'
+      });
+      request.execute(function(people) {
+        $('#visiblePeople').empty();
+        $('#visiblePeople').append('Number of people visible to this app: ' +
+            people.totalItems + '<br/>');
+        for (var personIndex in people.items) {
+          person = people.items[personIndex];
+          $('#visiblePeople').append('<img src="' + person.image.url + '">');
+        }
+      });
+    },
+
+    event: function() {
       var request = gapi.client.plus.people.list({
         'userId': 'me',
         'collection': 'visible'
@@ -171,6 +199,28 @@ var helper = (function() {
         }
       });
     }
+      
+      
+      
+      
+
+      
+      
+function httpGet(theUrl)
+{
+    var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+      
+      
+      
+      
+      
+      
   };
 })();
 
