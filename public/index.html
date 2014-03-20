@@ -78,6 +78,7 @@
                     document.getElementById('FBfriendList').innerHTML = '';
                     document.getElementById('FBeventList').innerHTML = '';
                     document.getElementById('MeventList').innerHTML = '';
+                    document.getElementById('FQLlist').innerHTML = '';
 
 
                     // Set <searchTerm> to query value
@@ -174,11 +175,34 @@
 
                 // **************************** THE MAIN METHOD ****************************
                 function testAPI() {
-
-                    console.log('Welcome!  Fetching your information.... ');
+                    
+                    
+                        
+                    //console.log('Welcome!  Fetching your information.... ');
                     access_token =   FB.getAuthResponse()['accessToken'];
-                    console.log('Access Token = '+ access_token);
-                    console.log('https://graph.facebook.com/search?q=Jo+Youko&type=user&access_token='+access_token);
+                    //console.log('Access Token = '+ access_token);
+                    
+                    var link = 'https://graph.facebook.com/search?q='+searchTerm+'&type=user&access_token='+access_token;
+var element = document.createElement("a");
+element.setAttribute("href", link);
+element.innerHTML = searchTerm;
+
+// and append it to where you'd like it to go:
+
+                    var numberList = document.getElementById("FQLlist");
+                    var newNumberListItem = document.createElement("li");
+
+                            //create new text node
+                    var numberListValue = document.createTextNode();
+
+                            //add text node to li element
+                    newNumberListItem.appendChild(numberListValue);
+
+                            //add new list element built in previous steps to unordered list
+                            //called numberList
+                      
+numberList.appendChild(element);                    
+                
                     // Query events NOT_REPLIED to
 
                     FB.api('/me/events/not_replied', function(response) {
@@ -300,18 +324,6 @@
 }
     
         </script>
-        <script>
-             console.log("adsf");              
-                    $( document ).ready(function() {
-
-                $.get("https://api.meetup.com/2/open_events.xml?topic=photo&time=,1w&key=346f4a513547d677934427478787649",function(data){
-                                 xmlDoc = data; 
-                                 var item= xmlDoc.getElementsByTagName("item"); 
-               console.log(item.length);                  
-            });
-
-            });
-        </script>
         <script
         src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
         <!--
@@ -326,7 +338,9 @@
             <td>
                 <div style="overflow: auto; width:27em; height:20em;">
                     <h1 style="text-align: center;"><b>Facebook Data</b></h1>
-
+                    <h3 style="text-align: center;">FQL Link</h3>
+                    <ul id="FQLlist" class = "results"></ul>
+                    
                     <h3 style="text-align: center;">Friends</h3>
                     <ul id="FBfriendList" class = "results"></ul>
 
