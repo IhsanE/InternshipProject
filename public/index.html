@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset='utf-8' />
       <link rel="stylesheet" type="text/css" href="zocial.css">
+      <script type="text/javascript" src="jquery.js"></script>
   </head>
   <body>
 <b>Welcome to my Internship Project!</b>
@@ -77,6 +78,7 @@ function performSearch() {
 
 	// Set <searchTerm> to query value
     searchTerm = document.getElementById('searchField').value
+    console.log("https://api.meetup.com/2/open_events.xml?topic="+searchTerm+"=,1w&key=346f4a513547d677934427478787649")
     // clear query value
 	document.getElementById('searchField').value = "";
 
@@ -246,6 +248,20 @@ function testAPI() {
 
     
     
+    </script>
+      <script>
+ console.log("adsf");              
+        $( document ).ready(function() {
+ 
+    $.get("https://api.meetup.com/2/open_events.xml?topic=photo&time=,1w&key=346f4a513547d677934427478787649",function(data){
+                     xmlDoc = data; 
+                     var item= xmlDoc.getElementsByTagName("item"); 
+   console.log(item.length);                  
+});
+ 
+});
+        
+        
     </script>
  <script
   src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
