@@ -14,12 +14,15 @@ url = url[:-1]
 print(url)
 page = urllib.request.urlopen(url)
 f = open('xmlFile.xml', 'w')
+o = open('meetupData.txt', 'w')
 a = str(page.read())
 f.write(a[46:-3])
 f.close()
 xmldoc = minidom.parse('xmlFile.xml')
-itemlist = xmldoc.getElementsByTagName('item') 
+itemlist = xmldoc.getElementsByTagName('name') 
 print (len(itemlist))
 #print (itemlist[0].attributes['name'].value)
 for s in itemlist :
-    print (s.firstChild.firstChild.firstChild)
+    o.write(s.firstChild.data + "\n")
+o.close()
+   

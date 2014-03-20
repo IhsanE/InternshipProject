@@ -75,6 +75,9 @@
                 function performSearch() {
                     document.getElementsByClassName('results').innerHTML = '';
                     document.getElementById('calendarList').innerHTML = ''; //For some reason the above class code won't work for Google.
+                    document.getElementById('FBfriendList').innerHTML = '';
+                    document.getElementById('FBeventList').innerHTML = '';
+                    document.getElementById('MeventList').innerHTML = '';
 
 
                     // Set <searchTerm> to query value
@@ -85,6 +88,7 @@
                     
                     makeApiCall();
                     testAPI();
+                    LoadFile();
                     
                 }
                 // Search Query
@@ -270,6 +274,31 @@
                  });
                });
              }
+            
+            function LoadFile() {
+    var numberList = document.getElementById("MeventList");
+    var oFrame = document.getElementById("frmFile");
+    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+    while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+    var arrLines = strRawContents.split("\n");
+    
+    for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        var newNumberListItem = document.createElement("li");
+
+                            //create new text node
+                    var numberListValue = document.createTextNode(curLine);
+
+                            //add text node to li element
+                    newNumberListItem.appendChild(numberListValue);
+
+                            //add new list element built in previous steps to unordered list
+                            //called numberList
+                    numberList.appendChild(newNumberListItem);  
+    }
+}
+    
         </script>
         <script>
              console.log("adsf");              
@@ -322,5 +351,6 @@
                 </div>
             </td>
         </table>
+        <iframe id="frmFile" src="meetupData.txt"  style="display: none;"></iframe>
     </body>
 </html>
