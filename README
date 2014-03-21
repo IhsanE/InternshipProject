@@ -24,11 +24,11 @@ Meetup.com API was accessed and (somewhat rendered) using Javascript/HTML/CSS/Py
        Javascript is used to read and render.
       
 
-![Alt text](~login.png "Login Screen")
+![Alt text](/screenshots/login.png "Login Screen")
 
-![Alt text](~logged.png "Logged-In Screen")
+![Alt text](/screenshots/logged.png "Logged-In Screen")
 
-![Alt text](~results.png "Results Screen (searched for 'ey')")
+![Alt text](/screenshots/results.png "Results Screen (searched for 'ey')")
 
 
 
