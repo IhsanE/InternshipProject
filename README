@@ -1,0 +1,2 @@
+This is a web interface that connects to Facebook, Google+ Calendar Events, and Meetup API in order to 
+grab user data with regards to their query, and render it via browser. Languages used are Javascript, Python, HTML, and CSS. 
