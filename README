@@ -1,3 +1,5 @@
+LINK TO PROJECT: http://internshipproject.parseapp.com/
+
 This is a web interface that connects to Facebook, Google+ Calendar Events, and Meetup API in order to grab user data with regards to their query, and render it via browser. 
 
 Languages used are Javascript, Python, HTML, PHP, and CSS. 
@@ -20,12 +22,17 @@ Meetup.com API was accessed and (somewhat rendered) using Javascript/HTML/CSS/Py
        
        The file <meetupData.txt> contains the information needed to be displayed on the HTML page, in which case
        Javascript is used to read and render.
-       
-Login Screen:
+      
 
-Logged-In Screen:
+![Alt text](/login.png "Login Screen")
 
-Results Screen:
+![Alt text](/logged.png "Logged-In Screen")
+
+![Alt text](/results.png "Results Screen (searched for 'ey')")
+
+
+
+
 
 
 
