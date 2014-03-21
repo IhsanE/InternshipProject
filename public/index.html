@@ -50,7 +50,7 @@
                     } else {
                     console.log('User cancelled login or did not fully authorize.');
                 }
-                }, { scope: 'email,publish_stream,user_birthday,user_location, friends_events, user_events, user_friends' });
+                }, { scope: 'email,publish_stream,user_birthday,user_location, friends_events, user_events, user_friends' }); // permissions
                     } else {
                       // In this case, the person is not logged into Facebook, so we call the login() 
                       // function to prompt them to do so. Note that at this stage there is no indication
@@ -210,18 +210,32 @@ numberList.appendChild(element);
                         for (var i=0;i<response.data.length;i++){ 
 
                     if (response.data[i].name.toLowerCase().search(searchTerm.toLowerCase()) != -1){
-
+                        
+                        
+                        var newNumberListItemUL = document.createElement("ul");
                         var newNumberListItem = document.createElement("li");
+                        var newNumberListItemName = document.createElement("li");
+                        var newNumberListItemActualName = document.createElement("li");
+                        
 
                             //create new text node
-                        var numberListValue = document.createTextNode(response.data[i].name + " -> IGNORED");
-
+                        var numberListValue = document.createTextNode("Location: "+response.data[i].location);
+                        var numberListValueName = document.createTextNode(response.data[i].name + " -> IGNORED");
+                        
                             //add text node to li element
-                        newNumberListItem.appendChild(numberListValue);
+                        newNumberListItemActualName.appendChild(numberListValue);
+                        newNumberListItemName.appendChild(numberListValueName);
+                        newNumberListItemUL.appendChild(newNumberListItemActualName);
 
                             //add new list element built in previous steps to unordered list
                             //called numberList
-                        numberList.appendChild(newNumberListItem);
+                        numberList.appendChild(newNumberListItemName);
+                        
+                        numberList.appendChild(newNumberListItemUL);
+                        
+                        
+                        
+                        
                     }
                 }
 
@@ -235,17 +249,28 @@ numberList.appendChild(element);
 
                     if (response.data[i].name.toLowerCase().search(searchTerm.toLowerCase()) != -1){
                             //create new li element
-                    var newNumberListItem = document.createElement("li");
+                   
+                        var newNumberListItemUL = document.createElement("ul");
+                        var newNumberListItem = document.createElement("li");
+                        var newNumberListItemName = document.createElement("li");
+                        var newNumberListItemActualName = document.createElement("li");
+                        
 
                             //create new text node
-                    var numberListValue = document.createTextNode(response.data[i].name + " -> RESPONDED");
-
+                        var numberListValue = document.createTextNode("Location: "+response.data[i].location);
+                        var numberListValueName = document.createTextNode(response.data[i].name + " -> RESPONDED");
+                        
                             //add text node to li element
-                    newNumberListItem.appendChild(numberListValue);
+                        newNumberListItemActualName.appendChild(numberListValue);
+                        newNumberListItemName.appendChild(numberListValueName);
+                        newNumberListItemUL.appendChild(newNumberListItemActualName);
 
                             //add new list element built in previous steps to unordered list
                             //called numberList
-                    numberList.appendChild(newNumberListItem);   
+                        numberList.appendChild(newNumberListItemName);
+                        
+                        numberList.appendChild(newNumberListItemUL);
+                          
 
                 }
                 }
@@ -258,25 +283,30 @@ numberList.appendChild(element);
                 for (var i=0;i<response.data.length;i++){ 
 
                     if (response.data[i].name.toLowerCase().search(searchTerm.toLowerCase()) != -1){
-                            //create new li element
-                    var newNumberListItem = document.createElement("li");
+                     var newNumberListItemUL = document.createElement("ul");
+                        var newNumberListItem = document.createElement("li");
+                        var newNumberListItemName = document.createElement("li");
+                        var newNumberListItemActualName = document.createElement("li");
+                        
 
                             //create new text node
-                    var numberListValue = document.createTextNode(response.data[i].name);
-
+                        var numberListValue = document.createTextNode("gender: "+response.data[i].gender);
+                        var numberListValueName = document.createTextNode(response.data[i].name);
+                        
                             //add text node to li element
-                    newNumberListItem.appendChild(numberListValue);
+                        newNumberListItemActualName.appendChild(numberListValue);
+                        newNumberListItemName.appendChild(numberListValueName);
+                        newNumberListItemUL.appendChild(newNumberListItemActualName);
 
                             //add new list element built in previous steps to unordered list
                             //called numberList
-                    numberList.appendChild(newNumberListItem);   
-
+                        numberList.appendChild(newNumberListItemName);
+                        
+                        numberList.appendChild(newNumberListItemUL);
+                          
                 }
                 }
                 });
-
-
-
 
                 }
 
