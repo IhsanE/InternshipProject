@@ -1,14 +1,13 @@
 
 <html>
     <head>
-        <title>Internship Project</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <meta charset='utf-8' />
         <link rel="stylesheet" type="text/css" href="zocial.css">
         <script type="text/javascript" src="jquery.js"></script>
+        <img src="cooltext1486637481.png" alt="InternshipProject" id = "titleImage">
     </head>
     <body>
-        <b>Welcome to my Internship Project!</b>
 
         <div id="fb-root"></div>
         <script>
@@ -367,7 +366,11 @@ numberList.appendChild(element);
         <fb:login-button show-faces="true" width="200" max-rows="1" scope="email,publish_stream,user_birthday,user_location, user_events, friends_events, user_friends"></fb:login-button>
         <button id="authorize-button" style="visibility: hidden"class="zocial googleplus">Sign in with Google+</button>
         <input id="searchField" class="field" type="text" onkeydown="if (event.keyCode == 13) document.getElementById('btnSearch').click()"/>
+
+		<form action="urlGenerator.php" method="get">
         <input type="button" id="btnSearch" class="btn" value="Search" onclick="performSearch();" />
+       	</form>
+
         <table>
             <td>
                 <div style="overflow: auto; width:27em; height:20em;">

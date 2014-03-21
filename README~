@@ -22,8 +22,6 @@ Meetup.com API was accessed and (somewhat rendered) using Javascript/HTML/CSS/Py
        
        The file <meetupData.txt> contains the information needed to be displayed on the HTML page, in which case
        Javascript is used to read and render.
-
-**Helpful Hint: Pressing "search" without a specified query results in every possible search being executed. 
       
 
 ![Alt tag](/screenshots/login.png "Login Screen")
