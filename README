@@ -1,1 +1,32 @@
-This is a web interface that connects to Facebook, Google+ Calendar Events, and Meetup API in order to grab user data with regards to their query, and render it via browser. Languages used are Javascript, Python, HTML, and CSS. 
+This is a web interface that connects to Facebook, Google+ Calendar Events, and Meetup API in order to grab user data with regards to their query, and render it via browser. 
+
+Languages used are Javascript, Python, HTML, PHP, and CSS. 
+
+Facebook API was accessed and rendered using pure Javascript/HTML/CSS.
+
+Google+ Calendar API was accessed and rendered using pure Javascript/HTML/CSS.
+
+Meetup.com API was accessed and (somewhat rendered) using Javascript/HTML/CSS/Python/PHP.
+    
+    In order to access Meetup.com API, two processes were explored, one of which leading to a result in PHP.
+    
+    1) Querying the HTTP 'GET' request with XHP in Javascript, this wasn't allowed because of issues dealing
+       with CORS, therefore the second option was resorted to.
+       
+    2) Querying the HTTP 'GET' request with Python allowed for the xml page rendered to be saved and 
+       parsed wth xml.doc that is a Python built-in library. This library allowed to extract important xml
+       data, with which I wrote out to a file. In order to get the URL to Python, I decided to use PHP to get the data
+       of the URL from an HTML DOM object and write it out to file which Python will read.
+       
+       The file <meetupData.txt> contains the information needed to be displayed on the HTML page, in which case
+       Javascript is used to read and render.
+       
+Login Screen:
+
+Logged-In Screen:
+
+Results Screen:
+
+
+
+
