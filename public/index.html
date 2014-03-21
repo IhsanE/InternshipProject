@@ -83,10 +83,11 @@
 
                     // Set <searchTerm> to query value
                     searchTerm = document.getElementById('searchField').value
-                    console.log("https://api.meetup.com/2/open_events.xml?topic="+searchTerm+"=,1w&key=346f4a513547d677934427478787649")
+                    //console.log("https://api.meetup.com/2/open_events.xml?topic=photo&key=346f4a513547d677934427478787649")
+                    
                     // clear query value
                     document.getElementById('searchField').value = "";
-                    
+
                     makeApiCall();
                     testAPI();
                     LoadFile();
@@ -353,6 +354,9 @@ numberList.appendChild(element);
     }
 }
     
+ 
+            
+            
         </script>
         <script
         src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>

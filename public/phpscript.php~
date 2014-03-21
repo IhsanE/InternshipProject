@@ -1,0 +1,8 @@
+
+
+<?php
+
+header('Content-type: application/xml');
+echo file_get_contents("https://api.meetup.com/2/open_events.xml?topic=photo&key=346f4a513547d677934427478787649");
+
+?>
