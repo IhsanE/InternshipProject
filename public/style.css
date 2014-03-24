@@ -16,12 +16,28 @@
   margin-right:auto;
   display: block;
 }
-
-#titleImage{
-display: block;
-    margin-left: auto;
-    margin-right: auto;
+body {
+  color:  #848484;
 }
+#title {
+
+  font-family: 'Neucha', cursive;
+text-align: center;
+color:#F2D44F;
+  height:70px;
+  font-size:40px;
+}
+li {
+  color: #000000;
+}
+
+div {
+
+  font-family: 'Neucha', cursive;
+text-align: center;
+color:#F2D44F;
+}
+
 
 #content{
 display: block;
